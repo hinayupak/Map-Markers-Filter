@@ -18,18 +18,21 @@
 
 <script type="text/javascript">
 
-	document.addEventListener('click', function (event) {
-		amenitiesFilter(event);
-	}, false);
+	var btn = document.getElementsByClassName('amenities-filter');
+	for (var i = 0; i < btn.length; i++) {
+		btn[i].addEventListener('click', (e) => {
+			amenitiesFilter(e);
+		});
+	}
 
-	const amenitiesFilter = (event) => {
-		const included = event.target.getAttribute('data-map-include');
+	const amenitiesFilter = (e) => {
+		const included = e.target.getAttribute('data-map-include');
 		switch(included){
 			case 'true':
-				event.target.setAttribute('data-map-include', 'false');
+				e.target.setAttribute('data-map-include', 'false');
 			break;
 			case 'false':
-				event.target.setAttribute('data-map-include', 'true');
+				e.target.setAttribute('data-map-include', 'true');
 			break;
 		}
 		compileAmenities();
