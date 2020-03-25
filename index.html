@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Map Filter</title>
+</head>
+<body>
+<div id="cunt">
+	<button class="amenities-filter" data-map-include="true" data-amenity="employment">Employment</button>
+	<button class="amenities-filter" data-map-include="true" data-amenity="etertainment">Entertainment</button>
+	<button class="amenities-filter" data-map-include="true" data-amenity="hospital">Hospital</button>
+	<button class="amenities-filter" data-map-include="true" data-amenity="school">School</button>
+	<button class="amenities-filter" data-map-include="true" data-amenity="shopping">Shopping</button>
+	<button class="amenities-filter" data-map-include="true" data-amenity="recreation">Recreation</button>
+	<button class="amenities-filter" data-map-include="true" data-amenity="transport">Transport</button>
+</div>
+
+<p>Results are on console.</p>
+
+<script type="text/javascript">
+
+	document.addEventListener('click', function (event) {
+		amenitiesFilter(event);
+	}, false);
+
+	const amenitiesFilter = (event) => {
+		const included = event.target.getAttribute('data-map-include');
+		switch(included){
+			case 'true':
+				event.target.setAttribute('data-map-include', 'false');
+			break;
+			case 'false':
+				event.target.setAttribute('data-map-include', 'true');
+			break;
+		}
+		compileAmenities();
+	}
+
+	const compileAmenities = () => {
+		const amenitiesIncluded = [];
+		const amenitiesAll = [...document.getElementsByClassName("amenities-filter")];
+		for (const element of amenitiesAll) {
+			if (element.getAttribute('data-map-include') == 'true') {
+				const amenity = element.getAttribute('data-amenity');
+				amenitiesIncluded.push(amenity);
+			}
+		}
+		console.log(amenitiesIncluded);
+	}
+
+</script>
+
+</body>
+</html>
