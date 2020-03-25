@@ -10,7 +10,7 @@
 	<button class="amenities-filter" data-map-include="true" data-amenity="hospital">Hospital</button>
 	<button class="amenities-filter" data-map-include="true" data-amenity="school">School</button>
 	<button class="amenities-filter" data-map-include="true" data-amenity="shopping">Shopping</button>
-	<button class="amenities-filter" data-map-include="true" data-amenity="recreation">Recreation</button>
+	<button class="amenities-filter" data-map-include="false" data-amenity="recreation">Recreation</button>
 	<button class="amenities-filter" data-map-include="true" data-amenity="transport">Transport</button>
 </div>
 
@@ -26,15 +26,8 @@
 	}
 
 	const amenitiesFilter = (e) => {
-		const included = e.target.getAttribute('data-map-include');
-		switch(included){
-			case 'true':
-				e.target.setAttribute('data-map-include', 'false');
-			break;
-			case 'false':
-				e.target.setAttribute('data-map-include', 'true');
-			break;
-		}
+		let included = JSON.parse(e.target.getAttribute('data-map-include')); // convert to boolean
+		e.target.setAttribute('data-map-include', !included);
 		compileAmenities();
 	}
 
